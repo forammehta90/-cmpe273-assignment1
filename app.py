@@ -26,12 +26,12 @@ for x in url:
 
 
 
-@app.route("/v1/<variable>.yml")
+@app.route("/v1/<variable>")
 def hello(variable):
 	git=Github().get_user(user).get_repo(repo)
-	stream=yaml.load(git.get_file_contents(variable+".yml").content.decode(git.get_contents(variable+".yml").encoding))
+	stream=git.get_file_contents(variable).content.decode(git.get_contents(variable).encoding)
 #	print "stream %r" % stream
-    	return jsonify(stream)
+    	return stream
 
 if __name__ == "__main__":
     app.config["url"] = sys.argv[1]
